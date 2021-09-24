@@ -23,37 +23,37 @@ class _SignupScreenState extends State<SignupScreen> {
             children: [
               Text('Welcome to $title\nLets get you going!', style: TextStyle(fontSize: 18),),
               SizedBox(height: 20,),
-              SingleChildScrollView(
-                child: Column(children: [
-                  MyInputField(context, label: 'Full Name'),
-              SizedBox(
-                height: 15,
-              ),
-              MyInputField(context, label: 'Email id'),
-              SizedBox(
-                height: 15,
-              ),
-              MyInputField(context, label: 'City'),
-              SizedBox(
-                height: 15,
-              ),
-              MyInputField(context, label: 'Contact No'),
-              SizedBox(
-                height: 15,
-              ),
-              MyInputField(context, label: 'Password'),
-              SizedBox(
-                height: 15,
-              ),
-              MyInputField(context, label: 'Confirm Password'),
-              SizedBox(
-                height: 15,
-              ),
-              MyInputField(context, label: 'Email'),
-              SizedBox(
-                height: 15,
-              ),
-                ],),
+              Container(
+                padding: EdgeInsets.symmetric(vertical: 10),
+                height: MediaQuery.of(context).size.height-330,
+                child: SingleChildScrollView(
+                  child: Column(children: [
+                    MyInputField(context, label: 'Full Name'),
+                SizedBox(
+                  height: 15,
+                ),
+                MyInputField(context, label: 'Email id'),
+                SizedBox(
+                  height: 15,
+                ),
+                MyInputField(context, label: 'City'),
+                SizedBox(
+                  height: 15,
+                ),
+                MyInputField(context, label: 'Contact No'),
+                SizedBox(
+                  height: 15,
+                ),
+                MyInputField(context, label: 'Password'),
+                SizedBox(
+                  height: 15,
+                ),
+                MyInputField(context, label: 'Confirm Password'),
+                SizedBox(
+                  height: 15,
+                ),
+                  ],),
+                ),
               )
             ],
           ),

@@ -1,6 +1,8 @@
 // ignore_for_file: file_names, prefer_const_constructors, avoid_unnecessary_containers
 
 import 'package:flutter/material.dart';
+import 'package:manthanapp/Screens/bottomAppbar.dart';
+import 'package:manthanapp/Screens/bottomAppbar.dart';
 import 'package:manthanapp/Screens/signup.dart';
 import 'package:manthanapp/custom_Widgets/MyWidgets.dart';
 
@@ -20,9 +22,11 @@ class _LoginScreenState extends State<LoginScreen> {
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-          MyInputField(context, label: 'Email'),
-          SizedBox(height: 15,),
-          MyInputField(context, label: 'Password')
+              MyInputField(context, label: 'Email'),
+              SizedBox(
+                height: 15,
+              ),
+              MyInputField(context, label: 'Password')
             ],
           ),
           Align(
@@ -37,20 +41,20 @@ class _LoginScreenState extends State<LoginScreen> {
                     style: TextStyle(fontSize: 18, color: Colors.white),
                   ),
                   onPressed: () {
-                    Navigator.of(context).push(
-                        MaterialPageRoute(builder: (context) => SignupScreen()));
+                    Navigator.of(context).pop();
+                    Navigator.of(context).pushReplacement(MaterialPageRoute(
+                        builder: (context) => BottomAppBarScreen()));
                   },
                 )),
           ),
           Align(
             alignment: Alignment.bottomCenter,
             child: Container(
-              margin: EdgeInsets.only(bottom: 95) ,
-              child: Text("Don't have an account? Signup")),
+                margin: EdgeInsets.only(bottom: 95),
+                child: Text("Don't have an account? Signup")),
           )
         ],
       ),
     );
-
   }
 }
