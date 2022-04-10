@@ -26,8 +26,8 @@ class _getStartedState extends State<getStarted> {
             Container(
                 margin: EdgeInsets.symmetric(horizontal: 25),
                 padding: EdgeInsets.only(bottom: 25),
-                child: Image.network(
-                    'https://m.media-amazon.com/images/M/MV5BNTg3NGY4NDEtOTRmNy00MTExLTk2OTEtMGUwMjFjNTNlMjM5XkEyXkFqcGdeQXRyYW5zY29kZS13b3JrZmxvdw@@._V1_.jpg')),
+                child: Image.asset(
+                    'assets/images/getStarted.png')),
             // ignore: prefer_const_constructors
             Text(
               'Engage and entertain through $title',

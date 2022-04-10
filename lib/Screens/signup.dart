@@ -1,4 +1,4 @@
-// ignore_for_file: file_names, prefer_const_constructors, avoid_unnecessary_containers
+// ignore_for_file: file_names, prefer_const_constructors, avoid_unnecessary_containers, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
 import 'package:manthanapp/custom_Widgets/MyWidgets.dart';
@@ -16,43 +16,51 @@ class _SignupScreenState extends State<SignupScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Stack(
         children: [
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text('Welcome to $title\nLets get you going!', style: TextStyle(fontSize: 18),),
-              SizedBox(height: 20,),
+              Text(
+                'Welcome to $title\nLets get you going!',
+                style: TextStyle(fontSize: 18),
+              ),
+              SizedBox(
+                height: 20,
+              ),
               Container(
                 padding: EdgeInsets.symmetric(vertical: 10),
-                height: MediaQuery.of(context).size.height-330,
+                height: MediaQuery.of(context).size.height - 330,
                 child: SingleChildScrollView(
-                  child: Column(children: [
-                    MyInputField(context, label: 'Full Name'),
-                SizedBox(
-                  height: 15,
-                ),
-                MyInputField(context, label: 'Email id'),
-                SizedBox(
-                  height: 15,
-                ),
-                MyInputField(context, label: 'City'),
-                SizedBox(
-                  height: 15,
-                ),
-                MyInputField(context, label: 'Contact No'),
-                SizedBox(
-                  height: 15,
-                ),
-                MyInputField(context, label: 'Password'),
-                SizedBox(
-                  height: 15,
-                ),
-                MyInputField(context, label: 'Confirm Password'),
-                SizedBox(
-                  height: 15,
-                ),
-                  ],),
+                  child: Column(
+                    children: [
+                      MyInputField(context, label: 'Full Name'),
+                      SizedBox(
+                        height: 15,
+                      ),
+                      MyInputField(context, label: 'Email id'),
+                      SizedBox(
+                        height: 15,
+                      ),
+                      MyInputField(context, label: 'City'),
+                      SizedBox(
+                        height: 15,
+                      ),
+                      MyInputField(context, label: 'Contact No'),
+                      SizedBox(
+                        height: 15,
+                      ),
+                      MyInputField(context, label: 'Password'),
+                      SizedBox(
+                        height: 15,
+                      ),
+                      MyInputField(context, label: 'Confirm Password'),
+                      SizedBox(
+                        height: 15,
+                      ),
+                    ],
+                  ),
                 ),
               )
             ],
@@ -69,16 +77,30 @@ class _SignupScreenState extends State<SignupScreen> {
                     style: TextStyle(fontSize: 18, color: Colors.white),
                   ),
                   onPressed: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => SignupScreen()));
+                    // Navigator.of(context).push(MaterialPageRoute(
+                    //     builder: (context) => SignupScreen()));
                   },
                 )),
           ),
           Align(
             alignment: Alignment.bottomCenter,
             child: Container(
-                margin: EdgeInsets.only(bottom: 95),
-                child: Text("Already have an account? Login")),
+              margin: EdgeInsets.only(bottom: 95),
+              child: InkWell(
+                onTap: () {
+                  Navigator.of(context).pop();
+                },
+                child: Text.rich(
+                  TextSpan(
+                    children: [
+                      TextSpan(text: "Already have and account? "),
+                      TextSpan(
+                          text: 'Login', style: TextStyle(color: Colors.blue)),
+                    ],
+                  ),
+                ),
+              ),
+            ),
           )
         ],
       ),

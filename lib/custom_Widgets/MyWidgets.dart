@@ -2,11 +2,12 @@
 
 import 'package:flutter/material.dart';
 
-Widget MyInputField(BuildContext context,{required String label}) {
+Widget MyInputField(BuildContext context,{required String label, controller}) {
   return Container(
       // width: MediaQuery.of(context).size.width - 100,
       margin: EdgeInsets.symmetric(horizontal: 45),
       child: TextFormField(
+        controller: controller,
           decoration: InputDecoration(
         labelText: label,
         fillColor: Colors.white,

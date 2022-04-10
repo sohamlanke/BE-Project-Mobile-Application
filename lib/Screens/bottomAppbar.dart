@@ -2,6 +2,7 @@
 // ignore_for_file: file_names, prefer_const_constructors, avoid_unnecessary_containers
 
 import 'package:flutter/material.dart';
+import 'package:manthanapp/Screens/profilepage.dart';
 
 class BottomAppBarScreen extends StatefulWidget {
   const BottomAppBarScreen({Key? key}) : super(key: key);
@@ -18,9 +19,10 @@ class _BottomAppBarScreenState extends State<BottomAppBarScreen> {
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: BottomAppBar(
+        color: Colors.white,
         shape: CircularNotchedRectangle(),
         child: Container(
-          height: 60,
+          height: 55,
           child: Row(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -95,7 +97,7 @@ class _BottomAppBarScreenState extends State<BottomAppBarScreen> {
           ),
           Center(
             child: Container(
-              child: Text('Empty Body 3'),
+              child: ProfilePage(),
             ),
           )
         ],
@@ -103,8 +105,8 @@ class _BottomAppBarScreenState extends State<BottomAppBarScreen> {
             NeverScrollableScrollPhysics(), // Comment this if you need to use Swipe.
       ),
       floatingActionButton: Container(
-        height: 65.0,
-        width: 65.0,
+        height: 60.0,
+        width: 60.0,
         child: FittedBox(
           child: FloatingActionButton(
             onPressed: () {},
