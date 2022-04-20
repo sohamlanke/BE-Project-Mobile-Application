@@ -1,12 +1,18 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'dart:math';
 
 import 'package:flutter/material.dart';
 
-Widget ProfilePage(context) {
- Random random = Random();
-  return Scaffold(
+class Profile extends StatefulWidget {
+  @override
+  _ProfileState createState() => _ProfileState();
+}
+
+class _ProfileState extends State<Profile> {
+  static Random random = Random();
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
       body: SingleChildScrollView(
         padding: EdgeInsets.symmetric(horizontal: 10),
         child: Container(
@@ -96,10 +102,9 @@ Widget ProfilePage(context) {
         ),
       ),
     );
-}
+  }
 
   Widget _buildCategory(String title) {
-    Random random = Random();
     return Column(
       children: <Widget>[
         Text(
@@ -117,3 +122,4 @@ Widget ProfilePage(context) {
       ],
     );
   }
+}

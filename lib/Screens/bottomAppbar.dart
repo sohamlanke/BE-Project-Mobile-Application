@@ -2,7 +2,9 @@
 // ignore_for_file: file_names, prefer_const_constructors, avoid_unnecessary_containers
 
 import 'package:flutter/material.dart';
+import 'package:manthanapp/Screens/homepage.dart';
 import 'package:manthanapp/Screens/profilepage.dart';
+import 'package:manthanapp/Screens/reference/profilepage2.dart';
 
 class BottomAppBarScreen extends StatefulWidget {
   const BottomAppBarScreen({Key? key}) : super(key: key);
@@ -30,7 +32,9 @@ class _BottomAppBarScreenState extends State<BottomAppBarScreen> {
               IconButton(
                 iconSize: 30.0,
                 padding: EdgeInsets.only(left: 28.0),
-                icon: _currentPage == 0? Icon(Icons.home) : Icon(Icons.home_outlined),
+                icon: _currentPage == 0
+                    ? Icon(Icons.home)
+                    : Icon(Icons.home_outlined),
                 onPressed: () {
                   setState(() {
                     _myPage.jumpToPage(0);
@@ -40,7 +44,9 @@ class _BottomAppBarScreenState extends State<BottomAppBarScreen> {
               IconButton(
                 iconSize: 30.0,
                 padding: EdgeInsets.only(right: 28.0),
-                icon: _currentPage == 1 ? Icon(Icons.search_off) : Icon(Icons.search_outlined),
+                icon: _currentPage == 1
+                    ? Icon(Icons.search_off)
+                    : Icon(Icons.search_outlined),
                 onPressed: () {
                   setState(() {
                     _myPage.jumpToPage(1);
@@ -50,7 +56,9 @@ class _BottomAppBarScreenState extends State<BottomAppBarScreen> {
               IconButton(
                 iconSize: 30.0,
                 padding: EdgeInsets.only(left: 28.0),
-                icon: _currentPage == 2?  Icon(Icons.notifications) : Icon(Icons.notifications_none_outlined),
+                icon: _currentPage == 2
+                    ? Icon(Icons.notifications)
+                    : Icon(Icons.notifications_none_outlined),
                 onPressed: () {
                   setState(() {
                     _myPage.jumpToPage(2);
@@ -60,7 +68,9 @@ class _BottomAppBarScreenState extends State<BottomAppBarScreen> {
               IconButton(
                 iconSize: 30.0,
                 padding: EdgeInsets.only(right: 28.0),
-                icon: _currentPage == 3? Icon(Icons.person) : Icon(Icons.person_outline),
+                icon: _currentPage == 3
+                    ? Icon(Icons.person)
+                    : Icon(Icons.person_outline),
                 onPressed: () {
                   setState(() {
                     _myPage.jumpToPage(3);
@@ -82,7 +92,7 @@ class _BottomAppBarScreenState extends State<BottomAppBarScreen> {
         children: <Widget>[
           Center(
             child: Container(
-              child: Text('Empty Body 0'),
+              child: homepage(context),
             ),
           ),
           Center(
@@ -97,7 +107,7 @@ class _BottomAppBarScreenState extends State<BottomAppBarScreen> {
           ),
           Center(
             child: Container(
-              child: ProfilePage(),
+              child: ProfilePage(context),
             ),
           )
         ],
