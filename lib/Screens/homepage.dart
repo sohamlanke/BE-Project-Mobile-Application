@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 Widget homepage(context) {
-   final topBar = new AppBar(
+  final topBar = new AppBar(
     backgroundColor: new Color(0xfff8faf8),
     centerTitle: true,
     elevation: 1.0,
@@ -20,17 +20,14 @@ Widget homepage(context) {
     ],
   );
 
-  
   return Scaffold(
-        appBar: topBar,
-        body: new InstaBody(),
-        bottomNavigationBar: new Container(
-          color: Colors.white,
-          height: 50.0,
-          alignment: Alignment.center,
-        ));
-
-
+      appBar: topBar,
+      body: new InstaBody(),
+      bottomNavigationBar: new Container(
+        color: Colors.white,
+        height: 50.0,
+        alignment: Alignment.center,
+      ));
 }
 
 class InstaBody extends StatelessWidget {
@@ -53,6 +50,8 @@ class InstaList extends StatefulWidget {
 
 class _InstaListState extends State<InstaList> {
   bool isPressed = false;
+  String url =
+      "https://i.pinimg.com/736x/d9/56/9b/d9569bbed4393e2ceb1af7ba64fdf86a.jpg";
 
   @override
   Widget build(BuildContext context) {
@@ -84,7 +83,7 @@ class _InstaListState extends State<InstaList> {
                               image: new DecorationImage(
                                   fit: BoxFit.fill,
                                   image: new NetworkImage(
-                                      "https://pbs.twimg.com/profile_images/916384996092448768/PF1TSFOE_400x400.jpg")),
+                                      url)),
                             ),
                           ),
                           new SizedBox(
@@ -106,7 +105,7 @@ class _InstaListState extends State<InstaList> {
                 Flexible(
                   fit: FlexFit.loose,
                   child: new Image.network(
-                    "https://images.pexels.com/photos/672657/pexels-photo-672657.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
+                    url,
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -148,7 +147,7 @@ class _InstaListState extends State<InstaList> {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 16.0),
                   child: Text(
-                    "Liked by sohamlanke, vaishnavi, saloni and 528,331 others",
+                    "Liked by sohamlanke,saloni,vaishnavi and 528,331 others",
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                 ),
@@ -165,7 +164,7 @@ class _InstaListState extends State<InstaList> {
                           image: new DecorationImage(
                               fit: BoxFit.fill,
                               image: new NetworkImage(
-                                  "https://pbs.twimg.com/profile_images/916384996092448768/PF1TSFOE_400x400.jpg")),
+                                  url)),
                         ),
                       ),
                       new SizedBox(
