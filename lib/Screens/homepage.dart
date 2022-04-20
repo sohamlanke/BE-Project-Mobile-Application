@@ -21,13 +21,9 @@ Widget homepage(context) {
   );
 
   return Scaffold(
-      appBar: topBar,
+      appBar: AppBar(backgroundColor: Colors.blueAccent[100], title: Text('SAVage social media app'),),  //can use topbar
       body: new InstaBody(),
-      bottomNavigationBar: new Container(
-        color: Colors.white,
-        height: 50.0,
-        alignment: Alignment.center,
-      ));
+      );
 }
 
 class InstaBody extends StatelessWidget {
@@ -37,7 +33,7 @@ class InstaBody extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.start,
       children: <Widget>[
         // Expanded(flex: 1, child: new InstaStories()),
-        Flexible(child: InstaList())
+        Expanded(child: InstaList())
       ],
     );
   }
@@ -58,12 +54,14 @@ class _InstaListState extends State<InstaList> {
     var deviceSize = MediaQuery.of(context).size;
     return ListView.builder(
       itemCount: 5,
-      itemBuilder: (context, index) => index == 0
-          ? new SizedBox(
-              // child: new InstaStories(),
-              height: deviceSize.height * 0.15,
-            )
-          : Column(
+      itemBuilder: (context, index) => 
+      // index == 0
+      //     ? new SizedBox(
+      //         // child: new InstaStories(),
+      //         height: deviceSize.height * 0.15,
+      //       )
+      //     : 
+          Column(
               mainAxisAlignment: MainAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -90,7 +88,7 @@ class _InstaListState extends State<InstaList> {
                             width: 10.0,
                           ),
                           new Text(
-                            "imthpk",
+                            "SAVage user",
                             style: TextStyle(fontWeight: FontWeight.bold),
                           )
                         ],
@@ -105,7 +103,7 @@ class _InstaListState extends State<InstaList> {
                 Flexible(
                   fit: FlexFit.loose,
                   child: new Image.network(
-                    url,
+                    "https://images.hindustantimes.com/auto/img/2021/12/30/600x338/2019-Mustang-2_1587188510753_1640852384911.jpg",
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -164,7 +162,8 @@ class _InstaListState extends State<InstaList> {
                           image: new DecorationImage(
                               fit: BoxFit.fill,
                               image: new NetworkImage(
-                                  url)),
+                                  url
+                                  )),
                         ),
                       ),
                       new SizedBox(

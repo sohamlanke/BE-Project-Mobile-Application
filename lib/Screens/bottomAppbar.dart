@@ -2,7 +2,9 @@
 // ignore_for_file: file_names, prefer_const_constructors, avoid_unnecessary_containers
 
 import 'package:flutter/material.dart';
+import 'package:manthanapp/Screens/addnewpost.dart';
 import 'package:manthanapp/Screens/homepage.dart';
+import 'package:manthanapp/Screens/notification.dart';
 import 'package:manthanapp/Screens/profilepage.dart';
 import 'package:manthanapp/Screens/reference/profilepage2.dart';
 
@@ -102,7 +104,7 @@ class _BottomAppBarScreenState extends State<BottomAppBarScreen> {
           ),
           Center(
             child: Container(
-              child: Text('Empty Body 2'),
+              child: notificationPage(),
             ),
           ),
           Center(
@@ -119,7 +121,9 @@ class _BottomAppBarScreenState extends State<BottomAppBarScreen> {
         width: 60.0,
         child: FittedBox(
           child: FloatingActionButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) => AddPost()) );
+            },
             child: Icon(
               Icons.add,
               color: Colors.white,

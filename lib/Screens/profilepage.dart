@@ -17,9 +17,10 @@ Widget ProfilePage(context) {
             children: <Widget>[
               SizedBox(height: 60),
               CircleAvatar(
-                backgroundImage: AssetImage(
-                  "assets/images/cm${random.nextInt(10)}.jpeg",
-                ),
+                // backgroundImage: AssetImage(
+                //   "assets/images/cm${random.nextInt(10)}.jpeg",
+                // ),
+                backgroundImage: NetworkImage("https://i.pinimg.com/736x/d9/56/9b/d9569bbed4393e2ceb1af7ba64fdf86a.jpg"),
                 radius: 50,
               ),
               SizedBox(height: 10),
@@ -84,8 +85,9 @@ Widget ProfilePage(context) {
                 itemBuilder: (BuildContext context, int index) {
                   return Padding(
                     padding: EdgeInsets.all(5.0),
-                    child: Image.asset(
-                      "assets/images/cm${random.nextInt(10)}.jpeg",
+                    child: Image.network(
+                      // "assets/images/cm${random.nextInt(10)}.jpeg",
+                      "https://i.pinimg.com/736x/82/4c/75/824c75d5d8baddac1e3ab99a48b77f36.jpg",
                       fit: BoxFit.cover,
                     ),
                   );

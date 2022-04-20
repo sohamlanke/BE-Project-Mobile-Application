@@ -23,6 +23,9 @@ class _LoginScreenState extends State<LoginScreen> {
       Navigator.of(context).pushReplacement(
           MaterialPageRoute(builder: (context) => BottomAppBarScreen()));
     } else {
+      // Navigator.of(context).pop();
+      // Navigator.of(context).pushReplacement(
+      //     MaterialPageRoute(builder: (context) => BottomAppBarScreen()));
       _scaffoldkey.currentState!.showSnackBar(SnackBar(content: Text('Lol'), duration: Duration(seconds: 1) ,backgroundColor: Colors.red, ));
     }
   }
