@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:manthanapp/Screens/bottomAppbar.dart';
 import 'package:manthanapp/Screens/getStarted.dart';
 
 void main() {
@@ -28,6 +29,7 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: const Color.fromRGBO(230, 244, 244, 1),
       ),
       home: const getStarted(),
+      // home : const BottomAppBarScreen(),
     );
   }
 }

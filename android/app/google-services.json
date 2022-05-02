@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "32724895642",
+    "firebase_url": "https://be-project-b54fd-default-rtdb.firebaseio.com",
+    "project_id": "be-project-b54fd",
+    "storage_bucket": "be-project-b54fd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:32724895642:android:cc84fed4641c78d3325c23",
+        "android_client_info": {
+          "package_name": "com.example.manthanapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "32724895642-abkdojifvrgphb3at9uimsg862hbedbv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB5DIz71dZJ_5q8GPpO3VMM8a8aV-7ZXtc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "32724895642-abkdojifvrgphb3at9uimsg862hbedbv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
