@@ -1,7 +1,10 @@
 // ignore_for_file: unnecessary_string_interpolations
 
+import 'dart:convert';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
 import '../globalConstants.dart';
 
@@ -13,13 +16,20 @@ class AddPost extends StatefulWidget {
 }
 
 class _AddPostState extends State<AddPost> {
-  void addPosttoFirestore({required content, imageurl = 'none' }) {
+  Future<void> addPosttoFirestore({required content, imageurl = 'none'}) async {
+    // final queryParams = {'content': content, date};
+    var uri = Uri.parse(
+        "https://cyberbullyseverity.herokuapp.com?content=$content&date=${DateTime.now()}&uid=$userid&url=$imageurl");
+    // var uri = Uri.https("cyberbullyseverity.herokuapp.com","content=$content&date=${DateTime.now()}&uid=$userid&url=$imageurl");
+    final res = await http.get(uri);
     FirebaseFirestore.instance.collection('newtweets').add({
       'content': '$content',
       'date': '${DateTime.now()}',
       'userid': '$userid',
-      'imageurl' : '$imageurl'
+      'imageurl': '$imageurl'
     });
+    var responseBody = json.decode(json.encode(res.body));
+    print(responseBody);
     print('Firestore test function triggered!');
     Navigator.of(context).pop();
     // Navigator.push(context, MaterialPageRoute(builder: (context) => BottomAppBarScreen() ) );
@@ -35,7 +45,7 @@ class _AddPostState extends State<AddPost> {
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
           print('Adding ${content.text} to firestore');
-          addPosttoFirestore(content: content.text, imageurl: imageurl.text );
+          addPosttoFirestore(content: content.text, imageurl: imageurl.text);
         },
         label: Text('Add Post'),
         backgroundColor: Colors.blue,
@@ -69,7 +79,9 @@ class _AddPostState extends State<AddPost> {
                   // decoration: inputDecoration(hint),
                 ),
               ),
-              SizedBox(height: 25,),
+              SizedBox(
+                height: 25,
+              ),
               textHeadingContainer("Add image url"),
               Container(
                 // height: 300,
@@ -80,7 +92,7 @@ class _AddPostState extends State<AddPost> {
                 child: TextFormField(
                   readOnly: false,
                   maxLines: null,
-                  controller: imageurl ,
+                  controller: imageurl,
                   cursorColor: Colors.black,
                   // keyboardType: TextInputType.multiline,
                   // decoration: inputDecoration(hint),

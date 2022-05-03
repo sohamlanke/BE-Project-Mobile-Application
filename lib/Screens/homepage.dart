@@ -69,7 +69,7 @@ class _InstaListState extends State<InstaList> {
 
     // );
     return StreamBuilder(
-        stream: FirebaseFirestore.instance.collection('newtweets').snapshots(),
+        stream: FirebaseFirestore.instance.collection('tweets').snapshots(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (!snapshot.hasData) {
             return Center(
@@ -83,16 +83,16 @@ class _InstaListState extends State<InstaList> {
               // );
               return ContentUI(
                   content: document['content'],
-                  // imageurl: Text(document['imageurl'])
-                  );
+                  imageurl: document['image_url']);
             }).toList(),
           );
         });
   }
 
-  Widget ContentUI({required content, imageurl}) {
-    imageurl =
-        "https://images.hindustantimes.com/auto/img/2021/12/30/600x338/2019-Mustang-2_1587188510753_1640852384911.jpg";
+  Widget ContentUI({required content, required imageurl}) {
+    print("image url = $imageurl");
+    // imageurl =
+    //     "https://images.hindustantimes.com/auto/img/2021/12/30/600x338/2019-Mustang-2_1587188510753_1640852384911.jpg";
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
@@ -118,7 +118,7 @@ class _InstaListState extends State<InstaList> {
                     width: 10.0,
                   ),
                   new Text(
-                    "$username",
+                    "SAVage user",
                     style: TextStyle(fontWeight: FontWeight.bold),
                   )
                 ],
@@ -130,7 +130,8 @@ class _InstaListState extends State<InstaList> {
             ],
           ),
         ),
-        Flexible(child: Padding(
+        Flexible(
+            child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Text('$content'),
         )),
@@ -183,38 +184,39 @@ class _InstaListState extends State<InstaList> {
             style: TextStyle(fontWeight: FontWeight.bold),
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.fromLTRB(16.0, 16.0, 0.0, 8.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: <Widget>[
-              new Container(
-                height: 40.0,
-                width: 40.0,
-                decoration: new BoxDecoration(
-                  shape: BoxShape.circle,
-                  image: new DecorationImage(
-                      fit: BoxFit.fill, image: new NetworkImage(url)),
-                ),
-              ),
-              new SizedBox(
-                width: 10.0,
-              ),
-              Expanded(
-                child: new TextField(
-                  decoration: new InputDecoration(
-                    border: InputBorder.none,
-                    hintText: "Add a comment...",
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0),
-          child: Text("1 Day Ago", style: TextStyle(color: Colors.grey)),
-        )
+        // Padding(
+        //   padding: const EdgeInsets.fromLTRB(16.0, 16.0, 0.0, 8.0),
+        //   child: Row(
+        //     mainAxisAlignment: MainAxisAlignment.start,
+        //     children: <Widget>[
+        //       new Container(
+        //         height: 40.0,
+        //         width: 40.0,
+        //         decoration: new BoxDecoration(
+        //           shape: BoxShape.circle,
+        //           image: new DecorationImage(
+        //               fit: BoxFit.fill, image: new NetworkImage(url)),
+        //         ),
+        //       ),
+        //       new SizedBox(
+        //         width: 10.0,
+        //       ),
+        //       Expanded(
+        //         child: new TextField(
+        //           decoration: new InputDecoration(
+        //             border: InputBorder.none,
+        //             hintText: "Add a comment...",
+        //           ),
+        //         ),
+        //       ),
+        //     ],
+        //   ),
+        // ),
+        SizedBox(height: 8,),
+        // Padding(
+        //   padding: const EdgeInsets.symmetric(horizontal: 16.0),
+        //   child: Text("1 Day Ago", style: TextStyle(color: Colors.grey)),
+        // )
       ],
     );
   }
