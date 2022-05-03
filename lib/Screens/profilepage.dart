@@ -3,6 +3,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:manthanapp/globalConstants.dart';
 
 Widget ProfilePage(context) {
  Random random = Random();
@@ -25,7 +26,7 @@ Widget ProfilePage(context) {
               ),
               SizedBox(height: 10),
               Text(
-                'Name here',
+                '$username',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 22,

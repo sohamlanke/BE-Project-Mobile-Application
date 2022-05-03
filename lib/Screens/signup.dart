@@ -35,7 +35,9 @@ class _SignupScreenState extends State<SignupScreen> {
       required name,
       required contact,
       required password}) {
-    userid = generateRandomString(32); //this variable is store in global.constants
+    userid =
+        generateRandomString(32); //this variable is store in global.constants
+    username = name;  // this variable is store in global.constants
     FirebaseFirestore.instance.collection('users').add({
       'city': '$city',
       'email': '$email',
@@ -45,7 +47,8 @@ class _SignupScreenState extends State<SignupScreen> {
       'userid': '$userid'
     });
     print('Firestore test function triggered!');
-    Navigator.push(context, MaterialPageRoute(builder: (context) => BottomAppBarScreen() ) );
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => BottomAppBarScreen()));
   }
 
   void initState() {
