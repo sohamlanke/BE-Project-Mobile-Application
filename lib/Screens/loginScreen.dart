@@ -2,6 +2,7 @@
 
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:manthanapp/Screens/adminpage.dart';
 import 'package:manthanapp/Screens/bottomAppbar.dart';
 import 'package:manthanapp/Screens/signup.dart';
 import 'package:manthanapp/custom_Widgets/MyWidgets.dart';
@@ -61,8 +62,9 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   login() {
-    if (email.text == 'admin' && pass.text == 'admin@123') {
-      gotonextScreen();
+    if (email.text == 'admin' && pass.text == 'admin') {
+      // gotonextScreen();
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Adminpage()) );
     } else {
       // Navigator.of(context).pop();
       // Navigator.of(context).pushReplacement(

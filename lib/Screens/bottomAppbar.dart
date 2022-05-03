@@ -1,12 +1,14 @@
 // ignore_for_file: avoid_types_as_parameter_names, avoid_print
 // ignore_for_file: file_names, prefer_const_constructors, avoid_unnecessary_containers
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:manthanapp/Screens/addnewpost.dart';
 import 'package:manthanapp/Screens/homepage.dart';
 import 'package:manthanapp/Screens/notification.dart';
 import 'package:manthanapp/Screens/profilepage.dart';
 import 'package:manthanapp/Screens/reference/profilepage2.dart';
+import 'package:manthanapp/globalConstants.dart';
 
 class BottomAppBarScreen extends StatefulWidget {
   const BottomAppBarScreen({Key? key}) : super(key: key);
@@ -18,6 +20,49 @@ class BottomAppBarScreen extends StatefulWidget {
 class _BottomAppBarScreenState extends State<BottomAppBarScreen> {
   PageController _myPage = PageController(initialPage: 0);
   int _currentPage = 0;
+
+  bool isrefreshed = false;
+
+  void refresh() {
+    if (isrefreshed == false) {
+      setState(() {});
+      isrefreshed = true;
+    }
+  }
+
+  void initState() {
+    print('initstate called');
+    fetchimages();
+  }
+
+  List images = [];
+  void fetchimages() {
+    print("fetch images called");
+    FirebaseFirestore.instance
+        .collection('tweets')
+        .where('userid', isEqualTo: userid)
+        .snapshots()
+        .listen((data) {
+      for (int i = 0; i < data.docs.length; i++) {
+        images.add(data.docs[i]['image_url']);
+      }
+      print(images);
+      // Widget mybody = ProfilePage2(context, images);
+      // refreshfn();
+      // Navigator.of(context).push(
+      // MaterialPageRoute(builder: (context) => ProfilePage2(context, images)));
+      // print("g");
+      // print(mybody);
+      // print('gg');
+      // refreshfn();
+      // print('doc =  ${data.docs[0]['email']} ${data.docs[0]['password']}');
+      // if (data.docs[0]['password'] ==  ) {
+      //   userid = data.docs[0]['userid'];
+      //   username = data.docs[0]['name'];
+      // }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -109,7 +154,7 @@ class _BottomAppBarScreenState extends State<BottomAppBarScreen> {
           ),
           Center(
             child: Container(
-              child: ProfilePage(context),
+              child: ProfilePage2(context, images),
             ),
           )
         ],
@@ -122,7 +167,8 @@ class _BottomAppBarScreenState extends State<BottomAppBarScreen> {
         child: FittedBox(
           child: FloatingActionButton(
             onPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => AddPost()) );
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => AddPost()));
             },
             child: Icon(
               Icons.add,

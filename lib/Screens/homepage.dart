@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:manthanapp/globalConstants.dart';
 
-Widget homepage(context) {
+Widget homepage(context, {isadmin = false}) {
   final topBar = new AppBar(
     backgroundColor: new Color(0xfff8faf8),
     centerTitle: true,
@@ -25,34 +25,48 @@ Widget homepage(context) {
   return Scaffold(
     appBar: AppBar(
       backgroundColor: Colors.blueAccent[100],
-      title: Text('SAVage social media app'),
+      title: Text(isadmin == true ? 'Admin Page' : 'SAVage social media app'),
     ), //can use topbar
-    body: new InstaBody(),
+    body: new InstaBody(
+      isadmin: isadmin,
+    ),
   );
 }
 
 class InstaBody extends StatelessWidget {
+  final isadmin;
+
+  const InstaBody({Key? key, this.isadmin}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return new Column(
       mainAxisAlignment: MainAxisAlignment.start,
       children: <Widget>[
         // Expanded(flex: 1, child: new InstaStories()),
-        Expanded(child: InstaList())
+        Expanded(
+            child: InstaList(
+          isadmin: isadmin,
+        ))
       ],
     );
   }
 }
 
 class InstaList extends StatefulWidget {
+  final isadmin;
+
+  const InstaList({Key? key, this.isadmin}) : super(key: key);
   @override
-  _InstaListState createState() => _InstaListState();
+  _InstaListState createState() => _InstaListState(isadmin);
 }
 
 class _InstaListState extends State<InstaList> {
+  final isadmin;
   bool isPressed = false;
   String url =
       "https://i.pinimg.com/736x/d9/56/9b/d9569bbed4393e2ceb1af7ba64fdf86a.jpg";
+
+  _InstaListState(this.isadmin);
 
   @override
   Widget build(BuildContext context) {
@@ -81,16 +95,27 @@ class _InstaListState extends State<InstaList> {
               // return Container(
               //   child: Center(child: Text(document['content'])),
               // );
-              return ContentUI(
-                  content: document['content'],
-                  imageurl: document['image_url']);
+              return  isadmin == true ? ContentUI(
+                isadmin: isadmin, label: document['label'],
+                content: document['content'], imageurl: document['image_url'], documentid: document.id) : ContentUI(
+                isadmin: isadmin,
+                content: document['content'],
+                imageurl: document['image_url'],
+                documentid: document.id,
+              );
             }).toList(),
           );
         });
   }
 
-  Widget ContentUI({required content, required imageurl}) {
+  Widget ContentUI(
+      {required content,
+      required imageurl,
+      required documentid,
+      label,
+      isadmin = false}) {
     print("image url = $imageurl");
+    print('isadmin = $isadmin');
     // imageurl =
     //     "https://images.hindustantimes.com/auto/img/2021/12/30/600x338/2019-Mustang-2_1587188510753_1640852384911.jpg";
     return Column(
@@ -137,10 +162,16 @@ class _InstaListState extends State<InstaList> {
         )),
         Flexible(
           fit: FlexFit.loose,
-          child: new Image.network(
-            // "https://images.hindustantimes.com/auto/img/2021/12/30/600x338/2019-Mustang-2_1587188510753_1640852384911.jpg",
-            "$imageurl",
-            fit: BoxFit.cover,
+          child: GestureDetector(
+            onLongPress: () {
+            print('Long presssed');
+            showAlertbox(documentid);
+          },
+            child: new Image.network(
+              // "https://images.hindustantimes.com/auto/img/2021/12/30/600x338/2019-Mustang-2_1587188510753_1640852384911.jpg",
+              "$imageurl",
+              fit: BoxFit.cover,
+            ),
           ),
         ),
         Padding(
@@ -177,13 +208,22 @@ class _InstaListState extends State<InstaList> {
             ],
           ),
         ),
-        Padding(
+        isadmin == false? Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
           child: Text(
             "Liked by sohamlanke,saloni,vaishnavi and 528,331 others",
             style: TextStyle(fontWeight: FontWeight.bold),
           ),
-        ),
+        ): Container(),
+        isadmin == true
+            ? Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                child: Text(
+                  "Label : $label",
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+              )
+            : Container(),
         // Padding(
         //   padding: const EdgeInsets.fromLTRB(16.0, 16.0, 0.0, 8.0),
         //   child: Row(
@@ -212,12 +252,48 @@ class _InstaListState extends State<InstaList> {
         //     ],
         //   ),
         // ),
-        SizedBox(height: 8,),
+        SizedBox(
+          height: 8,
+        ),
         // Padding(
         //   padding: const EdgeInsets.symmetric(horizontal: 16.0),
         //   child: Text("1 Day Ago", style: TextStyle(color: Colors.grey)),
         // )
       ],
+    );
+  }
+
+  Future<void> DeleteImage(String jobId) {
+    return FirebaseFirestore.instance.collection('tweets').doc(jobId).delete();
+  }
+
+  showAlertbox(documentid) async {
+    print('in alert box');
+    bool result = await showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text('Confirmation'),
+          content: Text('Do you want to delete?'),
+          actions: <Widget>[
+            new FlatButton(
+              onPressed: () {
+                Navigator.of(context, rootNavigator: true)
+                    .pop(false); // dismisses only the dialog and returns false
+              },
+              child: Text('No'),
+            ),
+            FlatButton(
+              onPressed: () {
+                DeleteImage(documentid);
+                Navigator.of(context, rootNavigator: true)
+                    .pop(true); // dismisses only the dialog and returns true
+              },
+              child: Text('Yes'),
+            ),
+          ],
+        );
+      },
     );
   }
 }
