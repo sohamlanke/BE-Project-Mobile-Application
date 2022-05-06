@@ -2,7 +2,7 @@
     package="com.example.manthanapp">
     <uses-permission android:name="android.permission.INTERNET"/> 
    <application
-        android:label="manthanapp"
+        android:label="Be Project"
         android:icon="@mipmap/ic_launcher"
         android:name="${applicationName}">
         <activity

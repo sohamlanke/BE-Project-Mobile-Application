@@ -88,30 +88,30 @@ class _BottomAppBarScreenState extends State<BottomAppBarScreen> {
                   });
                 },
               ),
-              IconButton(
-                iconSize: 30.0,
-                padding: EdgeInsets.only(right: 28.0),
-                icon: _currentPage == 1
-                    ? Icon(Icons.search_off)
-                    : Icon(Icons.search_outlined),
-                onPressed: () {
-                  setState(() {
-                    _myPage.jumpToPage(1);
-                  });
-                },
-              ),
-              IconButton(
-                iconSize: 30.0,
-                padding: EdgeInsets.only(left: 28.0),
-                icon: _currentPage == 2
-                    ? Icon(Icons.notifications)
-                    : Icon(Icons.notifications_none_outlined),
-                onPressed: () {
-                  setState(() {
-                    _myPage.jumpToPage(2);
-                  });
-                },
-              ),
+              // IconButton(
+              //   iconSize: 30.0,
+              //   padding: EdgeInsets.only(right: 28.0),
+              //   icon: _currentPage == 1
+              //       ? Icon(Icons.search_off)
+              //       : Icon(Icons.search_outlined),
+              //   onPressed: () {
+              //     setState(() {
+              //       _myPage.jumpToPage(1);
+              //     });
+              //   },
+              // ),
+              // IconButton(
+              //   iconSize: 30.0,
+              //   padding: EdgeInsets.only(left: 28.0),
+              //   icon: _currentPage == 2
+              //       ? Icon(Icons.notifications)
+              //       : Icon(Icons.notifications_none_outlined),
+              //   onPressed: () {
+              //     setState(() {
+              //       _myPage.jumpToPage(2);
+              //     });
+              //   },
+              // ),
               IconButton(
                 iconSize: 30.0,
                 padding: EdgeInsets.only(right: 28.0),
