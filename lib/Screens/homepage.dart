@@ -83,7 +83,7 @@ class _InstaListState extends State<InstaList> {
 
     // );
     return StreamBuilder(
-        stream: FirebaseFirestore.instance.collection('tweets').snapshots(),
+        stream: FirebaseFirestore.instance.collection(isadmin?'tweets':'original').snapshots(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (!snapshot.hasData) {
             return Center(

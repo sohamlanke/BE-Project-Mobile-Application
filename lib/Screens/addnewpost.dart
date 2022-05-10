@@ -16,10 +16,17 @@ class AddPost extends StatefulWidget {
 }
 
 class _AddPostState extends State<AddPost> {
+
+  Preprocessing(){
+
+  }
+
+
   Future<void> addPosttoFirestore({required content, imageurl = 'none'}) async {
     // final queryParams = {'content': content, date};
+   
     var uri = Uri.parse(
-        "https://cyberbullyseverity.herokuapp.com?content=$content&date=${DateTime.now()}&uid=$userid&url=$imageurl");
+        "https://BE-Preprocessing.noice9293.repl.co?content=$content&date=${DateTime.now()}&uid=$userid&url=$imageurl");
     // var uri = Uri.https("cyberbullyseverity.herokuapp.com","content=$content&date=${DateTime.now()}&uid=$userid&url=$imageurl");
     final res = await http.get(uri);
     FirebaseFirestore.instance.collection('newtweets').add({
@@ -104,6 +111,7 @@ class _AddPostState extends State<AddPost> {
       ),
     );
   }
+
 }
 
 Widget textHeadingContainer(String text) {
